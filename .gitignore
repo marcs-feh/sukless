@@ -1,7 +1,7 @@
 *.o
 dwm/dwm
 st/st
-dmenu/demenu
-dmenu/demenu_path
-dmenu/demenu_run
+dmenu/dmenu
+dmenu/dmenu_path
+dmenu/dmenu_run
 dmenu/stest
