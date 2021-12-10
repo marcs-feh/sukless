@@ -97,7 +97,10 @@ static Key keys[] = {
 	{ MODKEY,                       XK_r,      setlayout,      {.v = &layouts[3]} },
 	{ MODKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[4]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
-	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
+    /* togglealwaysontop should also togglefloating, the inverse isnt needed though */
+	{ MODKEY|ShiftMask,             XK_space,  togglefloating,      {0} },
+ 	{ MODKEY|ShiftMask,             XK_space,  togglealwaysontop,   {0} },
+
 	{ MODKEY|ShiftMask,             XK_f,      togglefullscr,  {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
