@@ -2,30 +2,40 @@
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int snap      = 32;       /* snap pixel */
+static const unsigned int snap      = 16;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int usealtbar          = 0;        /* 1 means use non-dwm status bar */
-static const int user_bh            = 0;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
+static const int user_bh            = 23;       /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
 static const char *altbarclass      = "Polybar";/* Alternate bar class name */
 static const char *altbarcmd        = "$HOME/bar.sh"; /* Alternate bar launch command */
 static const char *fonts[]          = { "monospace:size=11" };
-static const char dmenufont[]       = "monospace:size=11";
-static const char col_gray1[]       = "#222222";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#005577";
+
+static const char col_bg[]          = "#1a1a1a";
+static const char col_fg[]          = "#c5c8c6";
+static const char col_black[]       = "#1d1f21";
+static const char col_red[]         = "#cc342b";
+static const char col_green[]       = "#198844";
+static const char col_yellow[]      = "#fba922";
+static const char col_blue[]        = "#3971ed";
+static const char col_magenta[]     = "#a36ac7";
+static const char col_cyan[]        = "#27b4e2";
+static const char col_white[]       = "#c5c8c6";
+
+//static const char dmenufont[]       = "monospace:size=11";
 static const char *colors[][3]      = {
 	/*                  fg          bg         border    */
-	[SchemeNorm]     = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]      = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeNorm]     = { col_fg,    col_bg,     col_black },
+	[SchemeSel]      = { col_fg,    col_bg,     col_blue},
+
     /* NOTE: The last "#000000" elements are not used, but are needed, so leave them as they are */
-	[SchemeStatus]   = { col_gray3, col_gray1, "#000000" },
-	[SchemeTagsSel]  = { col_gray4, col_cyan,  "#000000" },
-    [SchemeTagsNorm] = { col_gray3, col_gray1, "#000000" },
-    [SchemeInfoSel]  = { col_gray4, col_cyan,  "#000000" },
-    [SchemeInfoNorm] = { col_gray3, col_gray1, "#000000" },
+	[SchemeStatus]   = { col_fg,        col_bg,     "#000000" },
+
+	[SchemeTagsSel]  = { col_black,     col_yellow, "#000000" },
+    [SchemeTagsNorm] = { col_fg,        col_bg,     "#000000" },
+
+    [SchemeInfoSel]  = { col_magenta,   col_bg,     "#000000" },
+    [SchemeInfoNorm] = { col_fg,        col_bg,     "#000000" },
 };
 
 /* tagging */
