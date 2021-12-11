@@ -11,16 +11,17 @@ static const char *altbarclass      = "Polybar";/* Alternate bar class name */
 static const char *altbarcmd        = "$HOME/bar.sh"; /* Alternate bar launch command */
 static const char *fonts[]          = { "monospace:size=11" };
 
-static const char col_bg[]          = "#1a1a1a";
-static const char col_fg[]          = "#c5c8c6";
-static const char col_black[]       = "#1d1f21";
-static const char col_red[]         = "#cc342b";
-static const char col_green[]       = "#198844";
-static const char col_yellow[]      = "#fba922";
-static const char col_blue[]        = "#3971ed";
-static const char col_magenta[]     = "#a36ac7";
-static const char col_cyan[]        = "#27b4e2";
-static const char col_white[]       = "#c5c8c6";
+static const char col_bg[]          = "#1e1e1e";
+static const char col_fg[]          = "#d4d4d4";
+
+static const char col_black[]       = "#2f2f2f";
+static const char col_red[]         = "#dd3838";
+static const char col_green[]       = "#7c9b43";
+static const char col_yellow[]      = "#edb335";
+static const char col_blue[]        = "#5599d0";
+static const char col_magenta[]     = "#d073c9";
+static const char col_cyan[]        = "#4ec9a7";
+static const char col_white[]       = "#dcdcdc";
 
 //static const char dmenufont[]       = "monospace:size=11";
 static const char *colors[][3]      = {
@@ -29,7 +30,7 @@ static const char *colors[][3]      = {
 	[SchemeSel]      = { col_fg,    col_bg,     col_blue},
 
     /* NOTE: The last "#000000" elements are not used, but are needed, so leave them as they are */
-	[SchemeStatus]   = { col_fg,        col_bg,     "#000000" },
+	[SchemeStatus]   = { col_cyan,        col_bg,     "#000000" },
 
 	[SchemeTagsSel]  = { col_black,     col_yellow, "#000000" },
     [SchemeTagsNorm] = { col_fg,        col_bg,     "#000000" },
@@ -90,7 +91,7 @@ static char dmenumon[2] = "0";
 
 /* commands */
 /* NOTE: do not delete or rename the variables: dmenucmd, termcmd */
-static const char *dmenucmd[]   = { "dmenu_run", NULL};
+static const char *dmenucmd[]   = { "dmenu_run", "-h", "23", "-p", "Launch: ", NULL};
 static const char *termcmd[]    = { "st", NULL };
 static const char *webbrowser[] = { "firefox", NULL };
 static const char *htop[]       = TERMCMD("htop");
