@@ -46,3 +46,4 @@ movestack(const Arg *arg) {
 		arrange(selmon);
 	}
 }
+
