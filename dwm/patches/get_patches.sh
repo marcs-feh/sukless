@@ -5,6 +5,7 @@ https://dwm.suckless.org/patches/ewmhtags/dwm-ewmhtags-6.2.diff \
 https://dwm.suckless.org/patches/centeredmaster/dwm-centeredmaster-20160719-56a31dc.diff \
 https://dwm.suckless.org/patches/movestack/dwm-movestack-20211115-a786211.diff \
 https://dwm.suckless.org/patches/pertag/dwm-pertag-20200914-61bb8b2.diff \
+https://dwm.suckless.org/patches/alpha/dwm-fixborders-6.2.diff \
 https://dwm.suckless.org/patches/attachbelow/dwm-attachbelow-6.2.diff \
 https://dwm.suckless.org/patches/bar_height/dwm-bar-height-6.2.diff \
 https://dwm.suckless.org/patches/alwaysontop/alwaysontop-6.2.diff \
