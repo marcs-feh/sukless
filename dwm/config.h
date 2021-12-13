@@ -9,9 +9,10 @@ static const int usealtbar          = 0;        /* 1 means use non-dwm status ba
 static const int user_bh            = 23;       /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
 static const char *altbarclass      = "Polybar";/* Alternate bar class name */
 static const char *altbarcmd        = "$HOME/bar.sh"; /* Alternate bar launch command */
-static const char *fonts[]          = { "monospace:size=11" };
+static const char *fonts[]          = { "JetBrains Mono:size=11" };
 
 static const char col_bg[]          = "#1e1e1e";
+static const char col_bg2[]         = "#252525";
 static const char col_fg[]          = "#d4d4d4";
 
 static const char col_black[]       = "#2f2f2f";
@@ -22,17 +23,18 @@ static const char col_blue[]        = "#5599d0";
 static const char col_magenta[]     = "#d073c9";
 static const char col_cyan[]        = "#4ec9a7";
 static const char col_white[]       = "#dcdcdc";
+static const char col_grey[]        = "#696969";
 
 //static const char dmenufont[]       = "monospace:size=11";
 static const char *colors[][3]      = {
 	/*                  fg          bg         border    */
-	[SchemeNorm]     = { col_fg,    col_bg,     col_black },
-	[SchemeSel]      = { col_fg,    col_bg,     col_blue},
+	[SchemeNorm]     = { col_fg,    col_bg,     col_bg2  },
+	[SchemeSel]      = { col_fg,    col_bg,     col_grey },
 
     /* NOTE: The last "#000000" elements are not used, but are needed, so leave them as they are */
-	[SchemeStatus]   = { col_cyan,        col_bg,     "#000000" },
+	[SchemeStatus]   = { col_cyan,       col_bg,     "#000000" },
 
-	[SchemeTagsSel]  = { col_black,     col_yellow, "#000000" },
+	[SchemeTagsSel]  = { col_bg,   	    col_yellow,  "#000000" },
     [SchemeTagsNorm] = { col_fg,        col_bg,     "#000000" },
 
     [SchemeInfoSel]  = { col_magenta,   col_bg,     "#000000" },
@@ -40,7 +42,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "1", "2", "3", "4", "5" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -49,6 +51,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
+	{ "KeePassXC",     NULL,       NULL,       0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -70,7 +73,7 @@ static const Layout layouts[] = {
 };
 
 /* key definitions */
-#define MODKEY Mod1Mask
+#define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -79,22 +82,24 @@ static const Layout layouts[] = {
 
 static char dmenumon[2] = "0";
 
-/* Replacement to the SHCMD macro, which I find to be more concise with the
- * rest of the program, the old one is commented bellow in case you want to
- * replace it */
 #define SHCMD(cmd) {"/bin/sh", "-c", cmd, NULL}
-/* #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } } */
-
-/* Execute a command inside a terminal. by dafult st is used, edit this macro
- * accordingly if you use another terminal emulator */
 #define TERMCMD(cmd) {"st", "-e", cmd, NULL}
 
 /* commands */
 /* NOTE: do not delete or rename the variables: dmenucmd, termcmd */
 static const char *dmenucmd[]   = { "dmenu_run", "-h", "23", "-p", "Launch: ", NULL};
 static const char *termcmd[]    = { "st", NULL };
-static const char *webbrowser[] = { "firefox", NULL };
+static const char *webbrowser[] = { "chromium", NULL };
+static const char *passwd_mgr[] = { "keepassxc", NULL };
+static const char *codium[]     = { "codium", NULL };
+static const char *dsearch[]    = SHCMD("dsearch");
+static const char *book_menu[]  = SHCMD("open_book");
+static const char *music[]      = SHCMD("ncmusic");
+static const char *music_stop[] = SHCMD("killall mpd ncmpcpp");
+static const char *screenshot[] = SHCMD("screenshot");
+static const char *pdfsel[]     = SHCMD("pdf_from_sel");
 static const char *htop[]       = TERMCMD("htop");
+static const char *fmgr[]       = TERMCMD("nnn");
 
 #include "movestack.c"
 static Key keys[] = {
@@ -103,7 +108,15 @@ static Key keys[] = {
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      spawn,          {.v = webbrowser } },
+	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = passwd_mgr } },
+	{ MODKEY|ShiftMask,             XK_a,      spawn,          {.v = screenshot } },
+	{ MODKEY,                       XK_v,      spawn,          {.v = book_menu } },
+	{ MODKEY,                       XK_f,      spawn,          {.v = fmgr } },
 	{ MODKEY,                       XK_t,      spawn,          {.v = htop } },
+	{ MODKEY,                       XK_m,      spawn,          {.v = music } },
+	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = music_stop } },
+	{ MODKEY|ShiftMask,             XK_c,      spawn,          {.v = codium } },
+	{ MODKEY,                       XK_z,      spawn,          {.v = pdfsel } },
 
     /* dwm controls */
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },

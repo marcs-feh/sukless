@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "monospace:size=11";
+static char *font = "JetBrains Mono:size=12";
 static int borderpx = 2;
 /* Spare fonts */
 static char *font2[] = {
