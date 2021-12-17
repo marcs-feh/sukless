@@ -12,6 +12,7 @@ static const char *altbarcmd        = "$HOME/bar.sh"; /* Alternate bar launch co
 static const char *fonts[]          = { "monospace:size=11" };
 
 static const char col_bg[]          = "#1e1e1e";
+static const char col_bg2[]         = "#252525";
 static const char col_fg[]          = "#d4d4d4";
 
 static const char col_black[]       = "#2f2f2f";
@@ -22,12 +23,13 @@ static const char col_blue[]        = "#5599d0";
 static const char col_magenta[]     = "#d073c9";
 static const char col_cyan[]        = "#4ec9a7";
 static const char col_white[]       = "#dcdcdc";
+static const char col_grey[]        = "#696969";
 
 //static const char dmenufont[]       = "monospace:size=11";
 static const char *colors[][3]      = {
 	/*                  fg          bg         border    */
-	[SchemeNorm]     = { col_fg,    col_bg,     col_black },
-	[SchemeSel]      = { col_fg,    col_bg,     col_blue},
+	[SchemeNorm]     = { col_fg,    col_bg,     col_bg2 },
+	[SchemeSel]      = { col_fg,    col_bg,     col_grey},
 
     /* NOTE: The last "#000000" elements are not used, but are needed, so leave them as they are */
 	[SchemeStatus]   = { col_cyan,        col_bg,     "#000000" },
