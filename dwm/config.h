@@ -52,6 +52,7 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
 	{ "KeePassXC",     NULL,       NULL,       0,            1,           -1 },
+	{ "mpv",     NULL,       NULL,       0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -106,6 +107,7 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
     /* commands */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_o,      spawn,          {.v = dsearch } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      spawn,          {.v = webbrowser } },
 	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = passwd_mgr } },
@@ -156,7 +158,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 
 	{ MODKEY,                       XK_q,      killclient,     {0} },
-	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	{ MODKEY|ShiftMask,             XK_F1,     quit,           {0} },
     /* tag keys */
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
