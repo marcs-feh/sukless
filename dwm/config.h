@@ -5,8 +5,8 @@ static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 16;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
+static const int user_bh            = 0;       /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
 static const int usealtbar          = 0;        /* 1 means use non-dwm status bar */
-static const int user_bh            = 23;       /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
 static const char *altbarclass      = "Polybar";/* Alternate bar class name */
 static const char *altbarcmd        = "$HOME/bar.sh"; /* Alternate bar launch command */
 static const char *fonts[]          = { "JetBrains Mono:size=11" };
@@ -73,6 +73,8 @@ static const Layout layouts[] = {
  	{ ">M>",      centeredfloatingmaster },
 };
 
+/* include a couple extra keysyms, these are prefixed with just K_ */
+#include "extra_keysym.h"
 /* key definitions */
 #define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
@@ -90,7 +92,7 @@ static char dmenumon[2] = "0";
 /* NOTE: do not delete or rename the variables: dmenucmd, termcmd */
 static const char *dmenucmd[]   = { "dmenu_run", "-h", "23", "-p", "Launch: ", NULL};
 static const char *termcmd[]    = { "st", NULL };
-static const char *webbrowser[] = { "chromium", NULL };
+static const char *webbrowser[] = { "firefox", NULL };
 static const char *passwd_mgr[] = { "keepassxc", NULL };
 static const char *codium[]     = { "codium", NULL };
 static const char *dsearch[]    = SHCMD("dsearch");
@@ -98,11 +100,18 @@ static const char *book_menu[]  = SHCMD("open_book");
 static const char *music[]      = SHCMD("ncmusic");
 static const char *music_stop[] = SHCMD("killall mpd ncmpcpp");
 static const char *screenshot[] = SHCMD("screenshot");
-static const char *pdfsel[]     = SHCMD("pdf_from_sel");
+static const char *switchkb[]   = SHCMD("switchkb");
 static const char *htop[]       = TERMCMD("htop");
 static const char *fmgr[]       = TERMCMD("nnn");
+static const char *bright_up[]  = SHCMD("doas brightness inc 0.05");
+static const char *bright_dwn[] = SHCMD("doas brightness dec 0.05");
+static const char *bright_rst[] = SHCMD("doas brightness reset");
+static const char *vol_dwn[]    = SHCMD("xsetroot -name 'low'");
+static const char *vol_mute[]   = SHCMD("xsetroot -name 'mute'");
+static const char *vol_up[]     = SHCMD("xsetroot -name 'high'");
 
 #include "movestack.c"
+
 static Key keys[] = {
 	/* modifier                     key        function        argument */
     /* commands */
@@ -115,10 +124,18 @@ static Key keys[] = {
 	{ MODKEY,                       XK_v,      spawn,          {.v = book_menu } },
 	{ MODKEY,                       XK_f,      spawn,          {.v = fmgr } },
 	{ MODKEY,                       XK_t,      spawn,          {.v = htop } },
+	{ MODKEY|ShiftMask,             XK_Tab,    spawn,          {.v = switchkb } },
 	{ MODKEY,                       XK_m,      spawn,          {.v = music } },
 	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = music_stop } },
 	{ MODKEY|ShiftMask,             XK_c,      spawn,          {.v = codium } },
-	{ MODKEY,                       XK_z,      spawn,          {.v = pdfsel } },
+    /* brightness control */
+	{ 0,                       K_MonBrightnessUp,      spawn, {.v = bright_up } },
+	{ 0,                       K_MonBrightnessDown,    spawn, {.v = bright_dwn } },
+	{ 0|ShiftMask,             K_MonBrightnessUp,      spawn, {.v = bright_rst } },
+    /* volume control */
+	{ 0,                            K_AudioLowerVolume,     spawn, {.v = vol_dwn } },
+	{ 0,                            K_AudioMute,            spawn, {.v = vol_mute } },
+	{ 0,                            K_AudioRaiseVolume,     spawn, {.v = vol_up } },
 
     /* dwm controls */
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
