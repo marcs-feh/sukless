@@ -95,20 +95,20 @@ static const char *termcmd[]    = { "st", NULL };
 static const char *webbrowser[] = { "firefox", NULL };
 static const char *passwd_mgr[] = { "keepassxc", NULL };
 static const char *codium[]     = { "codium", NULL };
+static const char *htop[]       = TERMCMD("htop");
+static const char *fmgr[]       = TERMCMD("nnn");
 static const char *dsearch[]    = SHCMD("dsearch");
 static const char *book_menu[]  = SHCMD("open_book");
 static const char *music[]      = SHCMD("ncmusic");
 static const char *music_stop[] = SHCMD("killall mpd ncmpcpp");
 static const char *screenshot[] = SHCMD("screenshot");
 static const char *switchkb[]   = SHCMD("switchkb");
-static const char *htop[]       = TERMCMD("htop");
-static const char *fmgr[]       = TERMCMD("nnn");
 static const char *bright_up[]  = SHCMD("doas brightness inc 0.05");
 static const char *bright_dwn[] = SHCMD("doas brightness dec 0.05");
 static const char *bright_rst[] = SHCMD("doas brightness reset");
-static const char *vol_dwn[]    = SHCMD("xsetroot -name 'low'");
-static const char *vol_mute[]   = SHCMD("xsetroot -name 'mute'");
-static const char *vol_up[]     = SHCMD("xsetroot -name 'high'");
+static const char *vol_dwn[]    = SHCMD("killall -q dwmblocks ; volume dwn  ; setsid dwmblocks");
+static const char *vol_mute[]   = SHCMD("killall -q dwmblocks ; volume mute ; setsid dwmblocks");
+static const char *vol_up[]     = SHCMD("killall -q dwmblocks ; volume up   ; setsid dwmblocks");
 
 #include "movestack.c"
 
