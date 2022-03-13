@@ -2,7 +2,7 @@
 
 Suckless Software source code + patches + configs.
 
-## LICENSE
+## LICENSES
 
 All `LICENSE` files for each program can be found in their respective folder.
 
