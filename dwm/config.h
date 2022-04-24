@@ -106,9 +106,9 @@ static const char *switchkb[]   = SHCMD("switchkb");
 static const char *bright_up[]  = SHCMD("doas brightness inc 0.05");
 static const char *bright_dwn[] = SHCMD("doas brightness dec 0.05");
 static const char *bright_rst[] = SHCMD("doas brightness reset");
-static const char *vol_dwn[]    = SHCMD("killall -q dwmblocks ; volume dwn  ; setsid dwmblocks");
-static const char *vol_mute[]   = SHCMD("killall -q dwmblocks ; volume mute ; setsid dwmblocks");
-static const char *vol_up[]     = SHCMD("killall -q dwmblocks ; volume up   ; setsid dwmblocks");
+static const char *vol_dwn[]    = SHCMD("volume dwn ; dwm_refreshbar");
+static const char *vol_mute[]   = SHCMD("volume mute ; dwm_refreshbar");
+static const char *vol_up[]     = SHCMD("volume up ; dwm_refreshbar");
 
 #include "movestack.c"
 

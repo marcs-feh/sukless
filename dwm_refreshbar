@@ -1,0 +1,4 @@
+#!/bin/sh
+
+kill $(pstree -lp | grep -oE 'dwm_statusbar\([0-9]+\).*$' | sed -E 's/.+sleep|\(|\)$//g')
+
