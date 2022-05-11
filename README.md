@@ -1,6 +1,6 @@
 # Sukless
 
-Suckless Software source code + patches + configs.
+Suckless Software source code + patches + configs + 2 utility scripts.
 
 ## LICENSES
 
