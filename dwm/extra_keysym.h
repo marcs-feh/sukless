@@ -8,5 +8,8 @@
 #define K_AudioLowerVolume      0x1008ff11
 #define K_AudioMute             0x1008ff12
 #define K_AudioRaiseVolume      0x1008ff13
+#define K_AudioMuteMic		      0x1008ffb2
+/* Print screen */
+#define K_PrintScreen						0xff61
 
-#endif /* Header Guard */
+#endif
