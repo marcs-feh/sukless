@@ -1,5 +1,5 @@
-#ifndef INCLUDE_EXTRA_KEYSYM
-#define INCLUDE_EXTRA_KEYSYM
+#ifndef INCLUDE_EXTRA_KEYSYM_
+#define INCLUDE_EXTRA_KEYSYM_
 
 /* Brightness Adjustment */
 #define K_MonBrightnessUp       0x1008ff02

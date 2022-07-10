@@ -75,6 +75,7 @@ static const Layout layouts[] = {
 
 /* include a couple extra keysyms, these are prefixed with just K_ */
 #include "extra_keysym.h"
+
 /* key definitions */
 #define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
@@ -158,10 +159,11 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 
     /* layouts */
-	{ MODKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY|ShiftMask,             XK_t,      setlayout,      {.v = &layouts[0]} },
+  { MODKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY|ShiftMask,             XK_y,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY|ShiftMask,             XK_u,      setlayout,      {.v = &layouts[4]} },
+	{ MODKEY|ShiftMask,             XK_u,      setlayout,      {.v = &layouts[3]} },
+	{ MODKEY|ShiftMask,             XK_i,      setlayout,      {.v = &layouts[4]} },
 
     /* togglealwaysontop should also togglefloating, the inverse isnt needed though */
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating,      {0} },
