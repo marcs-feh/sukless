@@ -93,7 +93,7 @@ static char dmenumon[2] = "0";
 /* NOTE: do not delete or rename the variables: dmenucmd, termcmd */
 static const char *dmenucmd[]   = { "dmenu_run", "-h", "23", "-p", "Launch: ", NULL};
 static const char *termcmd[]    = { "st", NULL };
-static const char *webbrowser[] = { "firefox", NULL };
+static const char *webbrowser[] = { "ungoogled-chromium", NULL };
 static const char *passwd_mgr[] = { "keepassxc", NULL };
 static const char *codium[]     = { "codium", NULL };
 static const char *slock[]			= { "slock", NULL };
@@ -123,7 +123,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_b,      spawn,          {.v = webbrowser } },
 	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = passwd_mgr } },
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = slock } },
-	{ 0,														K_PrintScreen,      spawn,          {.v = screenshot } },
+	{ MODKEY|ShiftMask,         		XK_a,      spawn,          {.v = screenshot } },
 	{ MODKEY,                       XK_v,      spawn,          {.v = book_menu } },
 	{ MODKEY,                       XK_f,      spawn,          {.v = fmgr } },
 	{ MODKEY,                       XK_t,      spawn,          {.v = htop } },
