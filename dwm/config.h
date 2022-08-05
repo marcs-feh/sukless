@@ -148,8 +148,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_s,      zoom,           {0} },
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
 
-	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
-	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.03} },
+	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.03} },
 
 	{ MODKEY|ShiftMask,             XK_j,      movestack,      {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_k,      movestack,      {.i = -1 } },
@@ -161,8 +161,8 @@ static Key keys[] = {
     /* layouts */
 	{ MODKEY|ShiftMask,             XK_t,      setlayout,      {.v = &layouts[0]} },
   { MODKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY|ShiftMask,             XK_y,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY|ShiftMask,             XK_u,      setlayout,      {.v = &layouts[3]} },
+  { MODKEY|ShiftMask,             XK_u,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY|ShiftMask,             XK_y,      setlayout,      {.v = &layouts[3]} },
 	{ MODKEY|ShiftMask,             XK_i,      setlayout,      {.v = &layouts[4]} },
 
     /* togglealwaysontop should also togglefloating, the inverse isnt needed though */
