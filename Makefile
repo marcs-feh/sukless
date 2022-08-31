@@ -1,7 +1,7 @@
 .PHONY: help build install uninstall clean
 
 help:
-	@printf "make:\n      build\n      install\n      uninstall\n      clean\n"
+	@printf "make:\n\tbuild\n\tinstall\n\tuninstall\n\tclean\n"
 
 build:
 	@printf 	"\033[1;33m[ BUILDING ST ]\033[0m\n"
