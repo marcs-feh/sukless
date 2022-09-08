@@ -93,7 +93,7 @@ static char dmenumon[2] = "0";
 /* NOTE: do not delete or rename the variables: dmenucmd, termcmd */
 static const char *dmenucmd[]   = { "dmenu_run", "-h", "23", "-p", "Launch: ", NULL};
 static const char *termcmd[]    = { "st", NULL };
-static const char *webbrowser[] = { "ungoogled-chromium", NULL };
+static const char *webbrowser[] = { "firefox", NULL };
 static const char *passwd_mgr[] = { "keepassxc", NULL };
 static const char *codium[]     = { "codium", NULL };
 static const char *slock[]			= { "slock", NULL };
