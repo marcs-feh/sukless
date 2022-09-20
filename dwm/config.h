@@ -108,9 +108,11 @@ static const char *switchkb[]   = SHCMD("switchkb");
 static const char *bright_up[]  = SHCMD("doas brightness inc 0.05");
 static const char *bright_dwn[] = SHCMD("doas brightness dec 0.05");
 static const char *bright_rst[] = SHCMD("doas brightness reset");
-static const char *vol_dwn[]    = SHCMD("volume dwn ; dwm_refreshbar");
+static const char *vol_dwn[]    = SHCMD("volume dwn 5 ; dwm_refreshbar");
+static const char *vol_up[]     = SHCMD("volume up 5; dwm_refreshbar");
+static const char *vol_dwn_ex[] = SHCMD("volume dwn 20 ; dwm_refreshbar");
+static const char *vol_up_ex[]  = SHCMD("volume up 20; dwm_refreshbar");
 static const char *vol_mute[]   = SHCMD("volume mute ; dwm_refreshbar");
-static const char *vol_up[]     = SHCMD("volume up ; dwm_refreshbar");
 
 #include "movestack.c"
 
@@ -139,6 +141,8 @@ static Key keys[] = {
 	{ 0,                            K_AudioLowerVolume,     spawn, {.v = vol_dwn } },
 	{ 0,                            K_AudioMute,            spawn, {.v = vol_mute } },
 	{ 0,                            K_AudioRaiseVolume,     spawn, {.v = vol_up } },
+	{ 0|ShiftMask,                  K_AudioLowerVolume,     spawn, {.v = vol_dwn_ex } },
+	{ 0|ShiftMask,                  K_AudioRaiseVolume,     spawn, {.v = vol_up_ex } },
 
     /* dwm controls */
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
