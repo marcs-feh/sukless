@@ -5,13 +5,13 @@ help:
 
 build:
 	@printf 	"\033[1;33m[ BUILDING ST ]\033[0m\n"
-	@cd st 		&& make && cd ..
+	@cd st 		&& CC=${CC} make && cd ..
 	@printf 	"\033[1;33m[ BUILDING DMENU ]\033[0m\n"
-	@cd dmenu && make && cd ..
+	@cd dmenu && CC=${CC} make && cd ..
 	@printf 	"\033[1;33m[ BUILDING DWM ]\033[0m\n"
-	@cd dwm 	&& make && cd ..
+	@cd dwm 	&& CC=${CC} make && cd ..
 	@printf 	"\033[1;33m[ BUILDING SLOCK ]\033[0m\n"
-	@cd slock && make && cd ..
+	@cd slock && CC=${CC} make && cd ..
 
 install: build
 	@printf 	"\033[1;32m[ INSTALLING ST ]\033[0m\n"
