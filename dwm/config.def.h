@@ -11,34 +11,23 @@ static const char *altbarclass      = "Polybar";/* Alternate bar class name */
 static const char *altbarcmd        = "$HOME/bar.sh"; /* Alternate bar launch command */
 static const char *fonts[]          = { "monospace:size=11" };
 
-static const char col_bg[]          = "#1e1e1e";
-static const char col_bg2[]         = "#252525";
-static const char col_fg[]          = "#d4d4d4";
-
-static const char col_black[]       = "#2f2f2f";
-static const char col_red[]         = "#dd3838";
-static const char col_green[]       = "#7c9b43";
-static const char col_yellow[]      = "#edb335";
-static const char col_blue[]        = "#5599d0";
-static const char col_magenta[]     = "#d073c9";
-static const char col_cyan[]        = "#4ec9a7";
-static const char col_white[]       = "#dcdcdc";
-static const char col_grey[]        = "#696969";
+static const char col_bg[] = "#1d2021";
+static const char col_fg[] = "#f4e5bf";
 
 //static const char dmenufont[]       = "monospace:size=11";
 static const char *colors[][3]      = {
-	/*                  fg          bg         border    */
-	[SchemeNorm]     = { col_fg,    col_bg,     col_bg2 },
-	[SchemeSel]      = { col_fg,    col_bg,     col_grey},
+	/* fg bg border */
+	[SchemeNorm]     = { col_fg, col_bg, col_bg },
+	[SchemeSel]      = { col_fg, col_bg, col_fg},
 
-    /* NOTE: The last "#000000" elements are not used, but are needed, so leave them as they are */
-	[SchemeStatus]   = { col_cyan,        col_bg,     "#000000" },
+	/* NOTE: The last "#000000" elements are not used, but are needed, so leave them as they are */
+	[SchemeStatus]   = { col_fg, col_bg, "#000000" },
 
-	[SchemeTagsSel]  = { col_black,     col_yellow, "#000000" },
-    [SchemeTagsNorm] = { col_fg,        col_bg,     "#000000" },
+	[SchemeTagsSel]  = { col_bg, col_fg, "#000000" },
+	[SchemeTagsNorm] = { col_fg, col_bg, "#000000" },
 
-    [SchemeInfoSel]  = { col_magenta,   col_bg,     "#000000" },
-    [SchemeInfoNorm] = { col_fg,        col_bg,     "#000000" },
+	[SchemeInfoSel]  = { col_fg, col_bg, "#000000" },
+	[SchemeInfoNorm] = { col_fg, col_bg, "#000000" },
 };
 
 /* tagging */
@@ -64,17 +53,17 @@ static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
- 	{ "[/]",      dwindle },
- 	{ "|M|",      centeredmaster },
+	{ "[/]",      dwindle },
+	{ "|M|",      centeredmaster },
 	{ "[M]",      monocle },
- 	{ "[@]",      spiral },
- 	{ ">M>",      centeredfloatingmaster },
+	{ "[@]",      spiral },
+	{ ">M>",      centeredfloatingmaster },
 };
 
 /* key definitions */
 #define MODKEY Mod1Mask
 #define TAGKEYS(KEY,TAG) \
-	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
+{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
@@ -101,13 +90,13 @@ static const char *htop[]       = TERMCMD("htop");
 #include "movestack.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-    /* commands */
+	/* commands */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      spawn,          {.v = webbrowser } },
 	{ MODKEY,                       XK_t,      spawn,          {.v = htop } },
 
-    /* dwm controls */
+	/* dwm controls */
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 
@@ -125,15 +114,15 @@ static Key keys[] = {
 
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 
-    /* layouts */
+	/* layouts */
 	{ MODKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY|ShiftMask,             XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY|ShiftMask,             XK_y,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY|ShiftMask,             XK_u,      setlayout,      {.v = &layouts[4]} },
 
-    /* togglealwaysontop should also togglefloating, the inverse isnt needed though */
+	/* togglealwaysontop should also togglefloating, the inverse isnt needed though */
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating,      {0} },
- 	{ MODKEY|ShiftMask,             XK_space,  togglealwaysontop,   {0} },
+	{ MODKEY|ShiftMask,             XK_space,  togglealwaysontop,   {0} },
 
 	{ MODKEY|ShiftMask,             XK_f,      togglefullscr,  {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
@@ -146,7 +135,7 @@ static Key keys[] = {
 
 	{ MODKEY,                       XK_q,      killclient,     {0} },
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-    /* tag keys */
+	/* tag keys */
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)

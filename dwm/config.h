@@ -1,44 +1,34 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
-static const unsigned int snap      = 16;       /* snap pixel */
-static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
-static const int user_bh            = 0;       /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
-static const int usealtbar          = 0;        /* 1 means use non-dwm status bar */
-static const char *altbarclass      = "Polybar";/* Alternate bar class name */
+static const unsigned int borderpx  = 2;  /* border pixel of windows */
+static const unsigned int snap      = 16; /* snap pixel */
+static const int showbar            = 1;  /* 0 means no bar */
+static const int topbar             = 1;  /* 0 means bottom bar */
+static const int user_bh            = 0;  /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
+static const int usealtbar          = 0;  /* 1 means use non-dwm status bar */
+static const char *altbarclass      = "Polybar";      /* Alternate bar class name */
 static const char *altbarcmd        = "$HOME/bar.sh"; /* Alternate bar launch command */
-static const char *fonts[]          = { "JetBrains Mono:size=11" };
+static const char *fonts[]          = { "Source Code Pro:size=10" };
 
-static const char col_bg[]          = "#1e1e1e";
-static const char col_bg2[]         = "#252525";
-static const char col_fg[]          = "#d4d4d4";
+static const char col_bg[]  = "#1d2021";
+static const char col_fg[]  = "#f4e5bf";
+static const char col_bor[] = "#6e6e6e";
+static const char col_sel[] = "#81aece";
 
-static const char col_black[]       = "#2f2f2f";
-static const char col_red[]         = "#dd3838";
-static const char col_green[]       = "#7c9b43";
-static const char col_yellow[]      = "#edb335";
-static const char col_blue[]        = "#5599d0";
-static const char col_magenta[]     = "#d073c9";
-static const char col_cyan[]        = "#4ec9a7";
-static const char col_white[]       = "#dcdcdc";
-static const char col_grey[]        = "#696969";
-
-//static const char dmenufont[]       = "monospace:size=11";
 static const char *colors[][3]      = {
-	/*                  fg          bg         border    */
-	[SchemeNorm]     = { col_fg,    col_bg,     col_bg2  },
-	[SchemeSel]      = { col_fg,    col_bg,     col_grey },
+	/* fg bg border */
+	[SchemeNorm]     = { col_fg, col_bg, col_bg },
+	[SchemeSel]      = { col_fg, col_bg, col_bor},
 
-    /* NOTE: The last "#000000" elements are not used, but are needed, so leave them as they are */
-	[SchemeStatus]   = { col_cyan,       col_bg,     "#000000" },
+	/* NOTE: The last "#000000" elements are not used, but are needed, so leave them as they are */
+	[SchemeStatus]   = { col_fg, col_bg,  "#000000" },
 
-	[SchemeTagsSel]  = { col_bg,   	    col_yellow,  "#000000" },
-    [SchemeTagsNorm] = { col_fg,        col_bg,     "#000000" },
+	[SchemeTagsSel]  = { col_bg, col_sel, "#000000" },
+	[SchemeTagsNorm] = { col_fg, col_bg,  "#000000" },
 
-    [SchemeInfoSel]  = { col_magenta,   col_bg,     "#000000" },
-    [SchemeInfoNorm] = { col_fg,        col_bg,     "#000000" },
+	[SchemeInfoSel]  = { col_fg, col_bg,  "#000000" },
+	[SchemeInfoNorm] = { col_fg, col_bg,  "#000000" },
 };
 
 /* tagging */
@@ -67,11 +57,11 @@ static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
- 	{ "[/]",      dwindle },
- 	{ "|M|",      centeredmaster },
+	{ "[/]",      dwindle },
+	{ "|M|",      centeredmaster },
 	{ "[M]",      monocle },
- 	{ "[@]",      spiral },
- 	{ ">M>",      centeredfloatingmaster },
+	{ "[@]",      spiral },
+	{ ">M>",      centeredfloatingmaster },
 };
 
 /* include a couple extra keysyms, these are prefixed with just K_ */
@@ -80,7 +70,7 @@ static const Layout layouts[] = {
 /* key definitions */
 #define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
-	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
+{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
@@ -94,7 +84,7 @@ static char dmenumon[2] = "0";
 /* NOTE: do not delete or rename the variables: dmenucmd, termcmd */
 static const char *dmenucmd[]   = { "dmenu_run", "-h", "23", "-p", "Launch: ", NULL};
 static const char *termcmd[]    = { "st", NULL };
-static const char *webbrowser[] = { "librewolf", NULL };
+static const char *webbrowser[] = { "brave", NULL };
 static const char *passwd_mgr[] = { "keepassxc", NULL };
 static const char *codium[]     = { "codium", NULL };
 static const char *slock[]			= { "slock", NULL };
@@ -119,7 +109,7 @@ static const char *vol_mute[]   = SHCMD("volume mute ; dwm_refreshbar");
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-    /* commands */
+	/* commands */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_o,      spawn,          {.v = dsearch } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
@@ -134,18 +124,18 @@ static Key keys[] = {
 	{ MODKEY,                       XK_m,      spawn,          {.v = music } },
 	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = music_stop } },
 	{ MODKEY|ShiftMask,             XK_c,      spawn,          {.v = codium } },
-    /* brightness control */
+	/* brightness control */
 	{ 0,                       K_MonBrightnessUp,      spawn, {.v = bright_up } },
 	{ 0,                       K_MonBrightnessDown,    spawn, {.v = bright_dwn } },
 	{ 0|ShiftMask,             K_MonBrightnessUp,      spawn, {.v = bright_rst } },
-    /* volume control */
+	/* volume control */
 	{ 0,                            K_AudioLowerVolume,     spawn, {.v = vol_dwn } },
 	{ 0,                            K_AudioMute,            spawn, {.v = vol_mute } },
 	{ 0,                            K_AudioRaiseVolume,     spawn, {.v = vol_up } },
 	{ 0|ShiftMask,                  K_AudioLowerVolume,     spawn, {.v = vol_dwn_ex } },
 	{ 0|ShiftMask,                  K_AudioRaiseVolume,     spawn, {.v = vol_up_ex } },
 
-    /* dwm controls */
+	/* dwm controls */
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 
@@ -163,16 +153,16 @@ static Key keys[] = {
 
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 
-    /* layouts */
+	/* layouts */
 	{ MODKEY|ShiftMask,             XK_t,      setlayout,      {.v = &layouts[0]} },
-  { MODKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[1]} },
-  { MODKEY|ShiftMask,             XK_u,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[1]} },
+	{ MODKEY|ShiftMask,             XK_u,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY|ShiftMask,             XK_y,      setlayout,      {.v = &layouts[3]} },
 	{ MODKEY|ShiftMask,             XK_i,      setlayout,      {.v = &layouts[4]} },
 
-    /* togglealwaysontop should also togglefloating, the inverse isnt needed though */
+	/* togglealwaysontop should also togglefloating, the inverse isnt needed though */
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating,      {0} },
- 	{ MODKEY|ShiftMask,             XK_space,  togglealwaysontop,   {0} },
+	{ MODKEY|ShiftMask,             XK_space,  togglealwaysontop,   {0} },
 
 	{ MODKEY|ShiftMask,             XK_f,      togglefullscr,  {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
@@ -185,7 +175,7 @@ static Key keys[] = {
 
 	{ MODKEY,                       XK_q,      killclient,     {0} },
 	{ MODKEY|ShiftMask,             XK_x,     quit,            {0} },
-    /* tag keys */
+	/* tag keys */
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)

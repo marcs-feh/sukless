@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "JetBrains Mono:size=12";
+static char *font = "JetBrains Mono NL:size=12";
 static int borderpx = 2;
 /* Spare fonts */
 static char *font2[] = {
@@ -112,31 +112,30 @@ char *termname = "xterm-256color";
 unsigned int tabspaces = 4;
 
 /* bg opacity */
-float alpha = 0.95;
+float alpha = 0.93;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
-    [0] = "#2f2f2f",
-    [1] = "#dd3838",
-    [2] = "#7c9b43",
-    [3] = "#edb335",
-    [4] = "#5197d0",
-    [5] = "#d073c9",
-    [6] = "#4ec9a7",
-    [7] = "#dcdcdc",
+		[0] = "#303536",
+		[1] = "#d83e33",
+		[2] = "#8ac87d",
+		[3] = "#f2ba41",
+		[4] = "#81aece",
+		[5] = "#cda2e3",
+		[6] = "#7ec9b1",
+		[7] = "#fcf8ee",
 
-    /* 8 bright colors */
-    [8]  = "#4c4c4c",
-    [9]  = "#ef7f70",
-    [10] = "#b0ce8c",
-    [11] = "#dfd27f",
-    [12] = "#65bceb",
-    [13] = "#c586c0",
-    [14] = "#89decd",
-    [15] = "#f3f3f3",
-    /* special colors */
-    [256] = "#1e1e1e",
-    [257] = "#d4d4d4",
+		[8]  = "#303536",
+		[9]  = "#d83e33",
+		[10] = "#8ac87d",
+		[11] = "#f2ba41",
+		[12] = "#81aece",
+		[13] = "#cda2e3",
+		[14] = "#7ec9b1",
+		[15] = "#fcf8ee",
+
+    [256] = "#1d2021",
+    [257] = "#f4e5bf",
 };
 
 

@@ -4,15 +4,19 @@
 static int topbar = 1;                      /* -b  option; if 0, dmenu appears at bottom     */
 /* -fn option overrides fonts[0]; default X11 font or font set */
 static const char *fonts[] = {
-	"JetBrains Mono:size=11"
+	"Source Code Pro:size=10"
 };
+
+static const char col_bg[]  = "#1d2021";
+static const char col_fg[]  = "#f4e5bf";
+static const char col_sel[] = "#81aece";
 
 static const char *prompt      = NULL;      /* -p  option; prompt to the left of input field */
 static const char *dynamic     = NULL;      /* -dy option; dynamic command to run on input change */
 static const char *colors[SchemeLast][2] = {
 	/*     fg         bg       */
-	[SchemeNorm] = { "#d4d4d4", "#1e1e1e" },
-	[SchemeSel]  = { "#1e1e1e", "#5197d0" },
+	[SchemeNorm] = { col_fg, col_bg },
+	[SchemeSel]  = { col_bg, col_sel },
 	[SchemeOut]  = { "#000000", "#00ffff" },
 };
 /* -l and -g options; controls number of lines and columns in grid if > 0 */
