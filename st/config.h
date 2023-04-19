@@ -5,15 +5,8 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "JetBrains Mono NL:size=12";
+static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
 static int borderpx = 2;
-/* Spare fonts */
-static char *font2[] = {
-	"Twemoji:size=12",
-/*	"Inconsolata for Powerline:pixelsize=12:antialias=true:autohint=true", */
-/*	"Hack Nerd Font Mono:pixelsize=11:antialias=true:autohint=true", */
-};
-
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -75,25 +68,13 @@ static unsigned int blinktimeout = 800;
 static unsigned int cursorthickness = 2;
 
 /*
- * 1: render most of the lines/blocks characters without using the font for
- *    perfect alignment between cells (U2500 - U259F except dashes/diagonals).
- *    Bold affects lines thickness if boxdraw_bold is not 0. Italic is ignored.
- * 0: disable (render all U25XX glyphs normally from the font).
- */
-const int boxdraw = 0;
-const int boxdraw_bold = 0;
-
-/* braille (U28XX):  1: render as adjacent "pixels",  0: use font */
-const int boxdraw_braille = 0;
-
-/*
  * bell volume. It must be a value between -100 and 100. Use 0 for disabling
  * it
  */
 static int bellvolume = 0;
 
 /* default TERM value */
-char *termname = "xterm-256color";
+char *termname = "st-256color";
 
 /*
  * spaces per tab
@@ -110,33 +91,37 @@ char *termname = "xterm-256color";
  *
  *	stty tabs
  */
-unsigned int tabspaces = 4;
-
-/* bg opacity */
-float alpha = 0.93;
+unsigned int tabspaces = 8;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
-		[0] = "#303536",
-		[1] = "#d83e33",
-		[2] = "#8ac87d",
-		[3] = "#f2ba41",
-		[4] = "#81aece",
-		[5] = "#cda2e3",
-		[6] = "#7ec9b1",
-		[7] = "#fcf8ee",
+	/* 8 normal colors */
+	"black",
+	"red3",
+	"green3",
+	"yellow3",
+	"blue2",
+	"magenta3",
+	"cyan3",
+	"gray90",
 
-		[8]  = "#303536",
-		[9]  = "#d83e33",
-		[10] = "#8ac87d",
-		[11] = "#f2ba41",
-		[12] = "#81aece",
-		[13] = "#cda2e3",
-		[14] = "#7ec9b1",
-		[15] = "#fcf8ee",
+	/* 8 bright colors */
+	"gray50",
+	"red",
+	"green",
+	"yellow",
+	"#5c5cff",
+	"magenta",
+	"cyan",
+	"white",
 
-    [256] = "#1d2021",
-    [257] = "#f4e5bf",
+	[255] = 0,
+
+	/* more colors can be added after 255 to use with DefaultXX */
+	"#cccccc",
+	"#555555",
+	"gray90", /* default foreground colour */
+	"black", /* default background colour */
 };
 
 
@@ -144,10 +129,10 @@ static const char *colorname[] = {
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-unsigned int defaultfg = 257;
-unsigned int defaultbg = 256;
-static unsigned int defaultcs = 257;
-static unsigned int defaultrcs = 0;
+unsigned int defaultfg = 258;
+unsigned int defaultbg = 259;
+unsigned int defaultcs = 256;
+static unsigned int defaultrcs = 257;
 
 /*
  * Default shape of cursor
@@ -156,13 +141,13 @@ static unsigned int defaultrcs = 0;
  * 6: Bar ("|")
  * 7: Snowman ("☃")
  */
-static unsigned int cursorshape = 6;
+static unsigned int cursorshape = 2;
 
 /*
  * Default columns and rows numbers
  */
 
-static unsigned int cols = 72;
+static unsigned int cols = 80;
 static unsigned int rows = 24;
 
 /*
@@ -191,8 +176,6 @@ static uint forcemousemod = ShiftMask;
  */
 static MouseShortcut mshortcuts[] = {
 	/* mask                 button   function        argument       release */
-	{ 0,            Button4, kscrollup,      {.i = 1} },
-	{ 0,            Button5, kscrolldown,    {.i = 1} },
 	{ XK_ANY_MOD,           Button2, selpaste,       {.i = 0},      1 },
 	{ ShiftMask,            Button4, ttysend,        {.s = "\033[5;2~"} },
 	{ XK_ANY_MOD,           Button4, ttysend,        {.s = "\031"} },
@@ -218,8 +201,6 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
-	{ ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
-	{ ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
 };
 
 /*

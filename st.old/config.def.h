@@ -5,8 +5,14 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
+static char *font = "monospace:size=11";
 static int borderpx = 2;
+/* Spare fonts */
+static char *font2[] = {
+/*	"Inconsolata for Powerline:pixelsize=12:antialias=true:autohint=true", */
+/*	"Hack Nerd Font Mono:pixelsize=11:antialias=true:autohint=true", */
+};
+
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -68,6 +74,18 @@ static unsigned int blinktimeout = 800;
 static unsigned int cursorthickness = 2;
 
 /*
+ * 1: render most of the lines/blocks characters without using the font for
+ *    perfect alignment between cells (U2500 - U259F except dashes/diagonals).
+ *    Bold affects lines thickness if boxdraw_bold is not 0. Italic is ignored.
+ * 0: disable (render all U25XX glyphs normally from the font).
+ */
+const int boxdraw = 0;
+const int boxdraw_bold = 0;
+
+/* braille (U28XX):  1: render as adjacent "pixels",  0: use font */
+const int boxdraw_braille = 0;
+
+/*
  * bell volume. It must be a value between -100 and 100. Use 0 for disabling
  * it
  */
@@ -93,35 +111,32 @@ char *termname = "st-256color";
  */
 unsigned int tabspaces = 8;
 
+/* bg opacity */
+float alpha = 0.95;
+
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
-	/* 8 normal colors */
-	"black",
-	"red3",
-	"green3",
-	"yellow3",
-	"blue2",
-	"magenta3",
-	"cyan3",
-	"gray90",
+    [0] = "#2f2f2f",
+    [1] = "#dd3838",
+    [2] = "#7c9b43",
+    [3] = "#edb335",
+    [4] = "#5197d0",
+    [5] = "#d073c9",
+    [6] = "#4ec9a7",
+    [7] = "#dcdcdc",
 
-	/* 8 bright colors */
-	"gray50",
-	"red",
-	"green",
-	"yellow",
-	"#5c5cff",
-	"magenta",
-	"cyan",
-	"white",
-
-	[255] = 0,
-
-	/* more colors can be added after 255 to use with DefaultXX */
-	"#cccccc",
-	"#555555",
-	"gray90", /* default foreground colour */
-	"black", /* default background colour */
+    /* 8 bright colors */
+    [8]  = "#4c4c4c",
+    [9]  = "#ef7f70",
+    [10] = "#b0ce8c",
+    [11] = "#dfd27f",
+    [12] = "#65bceb",
+    [13] = "#c586c0",
+    [14] = "#89decd",
+    [15] = "#f3f3f3",
+    /* special colors */
+    [256] = "#1e1e1e",
+    [257] = "#d4d4d4",
 };
 
 
@@ -129,10 +144,10 @@ static const char *colorname[] = {
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-unsigned int defaultfg = 258;
-unsigned int defaultbg = 259;
-unsigned int defaultcs = 256;
-static unsigned int defaultrcs = 257;
+unsigned int defaultfg = 257;
+unsigned int defaultbg = 256;
+static unsigned int defaultcs = 257;
+static unsigned int defaultrcs = 0;
 
 /*
  * Default shape of cursor
@@ -141,7 +156,7 @@ static unsigned int defaultrcs = 257;
  * 6: Bar ("|")
  * 7: Snowman ("☃")
  */
-static unsigned int cursorshape = 2;
+static unsigned int cursorshape = 6;
 
 /*
  * Default columns and rows numbers
@@ -176,6 +191,8 @@ static uint forcemousemod = ShiftMask;
  */
 static MouseShortcut mshortcuts[] = {
 	/* mask                 button   function        argument       release */
+	{ ShiftMask,            Button4, kscrollup,      {.i = 1} },
+	{ ShiftMask,            Button5, kscrolldown,    {.i = 1} },
 	{ XK_ANY_MOD,           Button2, selpaste,       {.i = 0},      1 },
 	{ ShiftMask,            Button4, ttysend,        {.s = "\033[5;2~"} },
 	{ XK_ANY_MOD,           Button4, ttysend,        {.s = "\031"} },
@@ -201,6 +218,8 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
+	{ ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
+	{ ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
 };
 
 /*
