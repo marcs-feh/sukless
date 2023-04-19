@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "monospace:size=11";
+static char *font = "JetBrains Mono NL:size=11";
 /* Spare fonts */
 static char *font2[] = {
 /*	"Inconsolata for Powerline:pixelsize=12:antialias=true:autohint=true", */
@@ -80,7 +80,7 @@ static unsigned int cursorthickness = 2;
  *    Bold affects lines thickness if boxdraw_bold is not 0. Italic is ignored.
  * 0: disable (render all U25XX glyphs normally from the font).
  */
-const int boxdraw = 1;
+const int boxdraw = 0;
 const int boxdraw_bold = 0;
 
 /* braille (U28XX):  1: render as adjacent "pixels",  0: use font */
@@ -113,29 +113,29 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-float alpha = 0.8;
+float alpha = 0.92;
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
-		[0] = "#232323",
-		[1] = "#ef2323",
-		[2] = "#23ef23",
-		[3] = "#efef23",
-		[4] = "#2323ef",
-		[5] = "#ef23ef",
-		[6] = "#23efef",
-		[7] = "#efefef",
+		[0] = "#303536",
+		[1] = "#d83e33",
+		[2] = "#8ac87d",
+		[3] = "#f2ba41",
+		[4] = "#81aece",
+		[5] = "#cda2e3",
+		[6] = "#7ec9b1",
+		[7] = "#fcf8ee",
 
-		[8]  = "#232323",
-		[9]  = "#ef2323",
-		[10] = "#23ef23",
-		[11] = "#efef23",
-		[12] = "#2323ef",
-		[13] = "#ef23ef",
-		[14] = "#23efef",
-		[15] = "#efefef",
+		[8]  = "#303536",
+		[9]  = "#d83e33",
+		[10] = "#8ac87d",
+		[11] = "#f2ba41",
+		[12] = "#81aece",
+		[13] = "#cda2e3",
+		[14] = "#7ec9b1",
+		[15] = "#fcf8ee",
 
-    [256] = "#171717",
-    [257] = "#dedede",
+    [256] = "#1d2021",
+    [257] = "#f4e5bf",
 };
 
 
