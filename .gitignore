@@ -1,4 +1,6 @@
 *.o
+__pycache__/
+*.pyc
 dwm/dwm
 st/st
 dmenu/dmenu
