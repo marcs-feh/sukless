@@ -69,40 +69,47 @@ static const Layout layouts[] = {
 
 /* key definitions */
 #define MODKEY Mod4Mask
+
 #define TAGKEYS(KEY,TAG) \
-{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
+	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
 static char dmenumon[2] = "0";
 
+#define EXEC(...) {__VA_ARGS__, NULL}
+
 #define SHCMD(cmd) {"/bin/sh", "-c", cmd, NULL}
+
 #define TERMCMD(cmd) {"st", "-e", cmd, NULL}
 
 /* commands */
 /* NOTE: do not delete or rename the variables: dmenucmd, termcmd */
-static const char *dmenucmd[]   = { "dmenu_run", "-h", "23", "-p", "Launch: ", NULL};
-static const char *launch[]   = { "rofi", "-show", "drun", NULL};
-static const char *rawlaunch[]   = { "rofi", "-show", "run", NULL};
-static const char *termcmd[]    = { "st", NULL };
-static const char *webbrowser[] = { "brave", NULL };
-static const char *passwd_mgr[] = { "keepassxc", NULL };
-static const char *codium[]     = { "codium", NULL };
-static const char *slock[]		= { "slock", NULL };
-static const char *screenshot[] = { "screengrab", NULL};
+static const char *dmenucmd[]    = EXEC("dmenu_run", "-h", "23", "-p", "Launch: ");
+static const char *termcmd[]     = EXEC("st");
+static const char *launch[]      = EXEC("rofi", "-show", "drun");
+static const char *raw_launch[]  = EXEC("rofi", "-show", "run");
+static const char *web_browser[] = EXEC("brave");
+static const char *passwd_mgr[]  = EXEC("keepassxc");
+static const char *slock[]		 = EXEC("slock");
+static const char *screenshot[]  = EXEC("screengrab");
+
 static const char *htop[]       = TERMCMD("htop");
-static const char *fmgr[]       = TERMCMD("nnn");
+static const char *file_mgr[]   = TERMCMD("nnn");
+
 static const char *dsearch[]    = SHCMD("dsearch");
 static const char *book_menu[]  = SHCMD("open_book");
 static const char *music[]      = SHCMD("ncmusic");
 static const char *music_stop[] = SHCMD("killall mpd ncmpcpp");
 static const char *switchkb[]   = SHCMD("switchkb");
+
 static const char *bright_up[]  = SHCMD("doas brightness inc 0.05");
 static const char *bright_dwn[] = SHCMD("doas brightness dec 0.05");
 static const char *bright_rst[] = SHCMD("doas brightness reset");
+
 static const char *vol_dwn[]    = SHCMD("volume dwn 5 ; dwm_refreshbar");
-static const char *vol_up[]     = SHCMD("volume up 5; dwm_refreshbar");
+static const char *vol_up[]     = SHCMD("volume up 5 ; dwm_refreshbar");
 static const char *vol_dwn_ex[] = SHCMD("volume dwn 20 ; dwm_refreshbar");
 static const char *vol_up_ex[]  = SHCMD("volume up 20; dwm_refreshbar");
 static const char *vol_mute[]   = SHCMD("volume mute ; dwm_refreshbar");
@@ -113,19 +120,18 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	/* commands */
 	{ MODKEY,                       XK_p,      spawn,          {.v = launch } },
-	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = rawlaunch } },
+	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = raw_launch } },
 	{ MODKEY,                       XK_o,      spawn,          {.v = dsearch } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_b,      spawn,          {.v = webbrowser } },
+	{ MODKEY,                       XK_b,      spawn,          {.v = web_browser } },
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = slock } },
-	{ MODKEY|ShiftMask,         		XK_a,      spawn,          {.v = screenshot } },
+	{ MODKEY|ShiftMask,         	XK_a,      spawn,          {.v = screenshot } },
 	{ MODKEY,                       XK_v,      spawn,          {.v = book_menu } },
-	{ MODKEY,                       XK_f,      spawn,          {.v = fmgr } },
+	{ MODKEY,                       XK_f,      spawn,          {.v = file_mgr } },
 	{ MODKEY,                       XK_t,      spawn,          {.v = htop } },
 	{ MODKEY|ShiftMask,             XK_Tab,    spawn,          {.v = switchkb } },
 	{ MODKEY,                       XK_m,      spawn,          {.v = music } },
 	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = music_stop } },
-	{ MODKEY|ShiftMask,             XK_c,      spawn,          {.v = codium } },
 	/* brightness control */
 	{ 0,                       K_MonBrightnessUp,      spawn, {.v = bright_up } },
 	{ 0,                       K_MonBrightnessDown,    spawn, {.v = bright_dwn } },
@@ -208,4 +214,8 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
+
+#undef EXEC
+#undef SHCMD
+#undef TERMCMD
 
