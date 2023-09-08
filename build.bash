@@ -6,7 +6,11 @@ Build() { make; }
 Install() { make install; }
 Clean() { make clean; }
 Uninstall() { make uninstall; }
-Help() { echo 'build.bash [build|install|uninstall|clean]'; exit 1; }
+Help() {
+	echo 'build.bash [build|install|uninstall|clean]'
+	echo '    Use `PREFIX="your_prefix" ./build.bash` to install to another location'
+	exit 1
+}
 
 action="$1"
 case $action in
