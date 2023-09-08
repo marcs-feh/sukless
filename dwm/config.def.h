@@ -70,14 +70,10 @@ static const Layout layouts[] = {
 
 static char dmenumon[2] = "0";
 
-/* Replacement to the SHCMD macro, which I find to be more concise with the
- * rest of the program, the old one is commented bellow in case you want to
- * replace it */
-#define SHCMD(cmd) {"/bin/sh", "-c", cmd, NULL}
-/* #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } } */
+#define EXEC(...) {__VA_ARGS__, NULL}
 
-/* Execute a command inside a terminal. by dafult st is used, edit this macro
- * accordingly if you use another terminal emulator */
+#define SHCMD(cmd) {"/bin/sh", "-c", cmd, NULL}
+
 #define TERMCMD(cmd) {"st", "-e", cmd, NULL}
 
 /* commands */
@@ -164,3 +160,6 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
 
+#undef EXEC
+#undef SHCMD
+#undef TERMCMD
