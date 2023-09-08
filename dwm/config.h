@@ -4,7 +4,7 @@
 static const unsigned int borderpx  = 2;  /* border pixel of windows */
 static const unsigned int snap      = 16; /* snap pixel */
 static const int showbar            = 1;  /* 0 means no bar */
-static const int topbar             = 0;  /* 0 means bottom bar */
+static const int topbar             = 1;  /* 0 means bottom bar */
 static const int user_bh            = 0;  /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
 static const int usealtbar          = 0;  /* 1 means use non-dwm status bar */
 static const char *altbarclass      = "Polybar";      /* Alternate bar class name */
@@ -83,18 +83,20 @@ static char dmenumon[2] = "0";
 /* commands */
 /* NOTE: do not delete or rename the variables: dmenucmd, termcmd */
 static const char *dmenucmd[]   = { "dmenu_run", "-h", "23", "-p", "Launch: ", NULL};
+static const char *launch[]   = { "rofi", "-show", "drun", NULL};
+static const char *rawlaunch[]   = { "rofi", "-show", "run", NULL};
 static const char *termcmd[]    = { "st", NULL };
 static const char *webbrowser[] = { "brave", NULL };
 static const char *passwd_mgr[] = { "keepassxc", NULL };
 static const char *codium[]     = { "codium", NULL };
-static const char *slock[]			= { "slock", NULL };
+static const char *slock[]		= { "slock", NULL };
+static const char *screenshot[] = { "screengrab", NULL};
 static const char *htop[]       = TERMCMD("htop");
 static const char *fmgr[]       = TERMCMD("nnn");
 static const char *dsearch[]    = SHCMD("dsearch");
 static const char *book_menu[]  = SHCMD("open_book");
 static const char *music[]      = SHCMD("ncmusic");
 static const char *music_stop[] = SHCMD("killall mpd ncmpcpp");
-static const char *screenshot[] = SHCMD("screenshot");
 static const char *switchkb[]   = SHCMD("switchkb");
 static const char *bright_up[]  = SHCMD("doas brightness inc 0.05");
 static const char *bright_dwn[] = SHCMD("doas brightness dec 0.05");
@@ -110,11 +112,11 @@ static const char *vol_mute[]   = SHCMD("volume mute ; dwm_refreshbar");
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	/* commands */
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_p,      spawn,          {.v = launch } },
+	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = rawlaunch } },
 	{ MODKEY,                       XK_o,      spawn,          {.v = dsearch } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      spawn,          {.v = webbrowser } },
-	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = passwd_mgr } },
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = slock } },
 	{ MODKEY|ShiftMask,         		XK_a,      spawn,          {.v = screenshot } },
 	{ MODKEY,                       XK_v,      spawn,          {.v = book_menu } },

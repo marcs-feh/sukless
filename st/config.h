@@ -5,12 +5,12 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "JetBrains Mono NL:size=12";
+static char *font = "JetBrains Mono NL:size=14";
 /* Spare fonts */
 static char *font2[] = {
-/*	"Inconsolata for Powerline:pixelsize=12:antialias=true:autohint=true", */
+/*	"Inconsolata for Powerline:pixelsize=14:antialias=true:autohint=true", */
 /*	"Hack Nerd Font Mono:pixelsize=11:antialias=true:autohint=true", */
-	"Twemoji:size=12",
+	"Twemoji:size=14",
 };
 
 static int borderpx = 2;
@@ -113,7 +113,7 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-float alpha = 0.92;
+float alpha = 0.97;
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 		[0] = "#303536",
