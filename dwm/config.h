@@ -93,26 +93,25 @@ static const char *raw_launch[]  = EXEC("rofi", "-show", "run");
 static const char *web_browser[] = EXEC("brave");
 static const char *passwd_mgr[]  = EXEC("keepassxc");
 static const char *slock[]		 = EXEC("slock");
-static const char *screenshot[]  = EXEC("screengrab");
 
 static const char *htop[]       = TERMCMD("htop");
 static const char *file_mgr[]   = TERMCMD("nnn");
 
-static const char *dsearch[]    = SHCMD("dsearch");
-static const char *book_menu[]  = SHCMD("open_book");
-static const char *music[]      = SHCMD("ncmusic");
+static const char *book_menu[]  = SHCMD("Open-Book");
+static const char *screenshot[] = SHCMD("Screenshot");
+static const char *music[]      = SHCMD("Ncmusic");
 static const char *music_stop[] = SHCMD("killall mpd ncmpcpp");
-static const char *switchkb[]   = SHCMD("switchkb");
+static const char *switchkb[]   = SHCMD("Switchkb");
 
-static const char *bright_up[]  = SHCMD("doas brightness inc 0.05");
-static const char *bright_dwn[] = SHCMD("doas brightness dec 0.05");
-static const char *bright_rst[] = SHCMD("doas brightness reset");
+static const char *bright_up[]  = SHCMD("doas Brightness inc 0.05");
+static const char *bright_dwn[] = SHCMD("doas Brightness dec 0.05");
+static const char *bright_rst[] = SHCMD("doas Brightness reset");
 
-static const char *vol_dwn[]    = SHCMD("volume dwn 5 ; dwm_refreshbar");
-static const char *vol_up[]     = SHCMD("volume up 5 ; dwm_refreshbar");
-static const char *vol_dwn_ex[] = SHCMD("volume dwn 20 ; dwm_refreshbar");
-static const char *vol_up_ex[]  = SHCMD("volume up 20; dwm_refreshbar");
-static const char *vol_mute[]   = SHCMD("volume mute ; dwm_refreshbar");
+static const char *vol_dwn[]    = SHCMD("Volume dwn 5 ; Dwm-Refreshbar");
+static const char *vol_up[]     = SHCMD("Volume up 5 ; Dwm-Refreshbar");
+static const char *vol_dwn_ex[] = SHCMD("Volume dwn 20 ; Dwm-Refreshbar");
+static const char *vol_up_ex[]  = SHCMD("Volume up 20; Dwm-Refreshbar");
+static const char *vol_mute[]   = SHCMD("Volume mute ; Dwm-Refreshbar");
 
 #include "movestack.c"
 
@@ -121,7 +120,6 @@ static Key keys[] = {
 	/* commands */
 	{ MODKEY,                       XK_p,      spawn,          {.v = launch } },
 	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = raw_launch } },
-	{ MODKEY,                       XK_o,      spawn,          {.v = dsearch } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      spawn,          {.v = web_browser } },
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = slock } },

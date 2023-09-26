@@ -5,12 +5,14 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "JetBrains Mono NL:size=14";
+
+#define FONTSIZE "12"
+static char *font = "JetBrains Mono NL:size=" FONTSIZE;
 /* Spare fonts */
 static char *font2[] = {
 /*	"Inconsolata for Powerline:pixelsize=14:antialias=true:autohint=true", */
 /*	"Hack Nerd Font Mono:pixelsize=11:antialias=true:autohint=true", */
-	"Twemoji:size=14",
+	"Twemoji:size=" FONTSIZE,
 };
 
 static int borderpx = 2;
@@ -490,3 +492,5 @@ static char ascii_printable[] =
 	" !\"#$%&'()*+,-./0123456789:;<=>?"
 	"@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_"
 	"`abcdefghijklmnopqrstuvwxyz{|}~";
+
+#undef FONTSIZE
