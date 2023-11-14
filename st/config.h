@@ -6,7 +6,7 @@
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
 
-#define FONTSIZE "12"
+#define FONTSIZE "13"
 static char *font = "JetBrains Mono NL:size=" FONTSIZE;
 /* Spare fonts */
 static char *font2[] = {
@@ -115,7 +115,7 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-float alpha = 0.97;
+float alpha = 0.98;
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 		[0] = "#303536",
